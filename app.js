@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', ['$scope', '$filter', '$timeout', function($scope,$filter,$timeout) {
+myApp.controller('mainController', ['$scope', '$filter', '$timeout', '$http', function($scope,$filter,$timeout,$http) {
 
   $scope.handle = '';
 
@@ -10,14 +10,26 @@ myApp.controller('mainController', ['$scope', '$filter', '$timeout', function($s
 
   $scope.characters = 5;
 
-  $scope.rules = [
-    {rulename: "Must be 5 characters"},
-    {rulename: "Must not be used elsewhere"},
-    {rulename: "Must be cool"}
+$http.get('http://localhost:3000/people')
 
-  ];
+.success(function (result) {
+  $scope.rules = result;
+})
+.error(function (data, status) {
+  console.log(data);
+});
 
-  console.log($scope.rules);
+$scope.newRule = '';
+$scope.addRule = function() {
+  $http.post('http://localhost:3000/people',{name: $scope.newRule})
+  .success(function (result) {
+    $scope.rules = result;
+    $scope.newRule= '';
+  })
+  .error (function (data,status) {
+    console.log(data);
+  })
+};
 
 
   if(!"DEBUG") {
@@ -40,7 +52,9 @@ myApp.controller('mainController', ['$scope', '$filter', '$timeout', function($s
     }
 
 
-
+    $scope.alertClick = function() {
+      console.log("Clicked!");
+    }
 
 
 }]);

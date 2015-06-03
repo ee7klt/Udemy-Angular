@@ -1,0 +1,11 @@
+[
+  {
+    "RuleName": "Must be 5 characters"
+  },
+  {
+    "RuleName": "Must not be used elsewhere"
+  },
+  {
+    "RuleName": "Must be cool"
+  }
+]
