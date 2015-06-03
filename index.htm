@@ -38,38 +38,15 @@
 
             <div ng-controller="mainController">
 
-                <div>
-                    <label>What is your twitter handle?</label>
-                    <input type="text" ng-model="handle" />
-                </div>
 
-                <div class="alert" ng-class="{'alert-warning': handle.length > characters, 'alert-danger':handle.length < characters}" ng-if="handle.length !== characters">
-
-                  <div ng-show="handle.length<characters">
-                    you have less than 5 characters
-                  </div>
-
-                  <div ng-show="handle.length>characters">
-                    you have more than 5 characters
-                  </div>
-                  Must be 5 characters
-                </div>
+                <h1>{{name}}</h1>
 
 
-                <hr />
-
-                <h1>twitter.com/{{ lowercasehandle() }}</h1>
-
-              <h3>Rules</h3>
-              <ul>
-                <li ng-repeat="rule in rules">
-                  {{rule.name}}
-                </li>
-              </ul>
-
-              Add rule: <input type="text" ng-model="newRule" /> <a href="#" class="btn btn-default" ng-click="addRule()">Add</a>
+            </div>
+            <div ng-controller="auxController">
 
 
+                <h3>{{name}}</h3>
 
 
             </div>
