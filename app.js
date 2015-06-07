@@ -1,6 +1,12 @@
-window.addEventListener('hashchange', function() {
-  console.log('hash changed!: '+window.location.hash);
-  if (window.location.hash === '#/bookmark/1') {
-    console.log("page 1 is cool");
-  }
-});
+var myApp = angular.module('myApp', []);
+
+myApp.controller('mainController', ['$scope', '$filter', '$timeout', '$http', '$log', '$location', function($scope,$filter,$timeout,$http,$log,$location) {
+
+  $log.info('helloworld');
+  $log.info($location.path());
+
+
+
+
+
+}]);
