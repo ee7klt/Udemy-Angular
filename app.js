@@ -1,4 +1,5 @@
 
+
 var myApp = angular.module('myApp', ['ngRoute']);
 
 myApp.config(function ($routeProvider) {
@@ -14,6 +15,7 @@ myApp.config(function ($routeProvider) {
     controller:'secondController'
   })
 });
+
 
 
 myApp.controller('mainController', ['$scope', '$log', function($scope,$log) {
