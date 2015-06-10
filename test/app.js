@@ -23,7 +23,7 @@ $scope.newRule = '';
 $scope.addRule = function() {
   $http.post('http://localhost:3000/people',{name: $scope.newRule})
   .success(function (result) {
-    $scope.rules = result;
+    $scope.rules.push(result);
     $scope.newRule= '';
   })
   .error (function (data,status) {

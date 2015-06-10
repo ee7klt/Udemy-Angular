@@ -29,9 +29,17 @@ myApp.controller('mainController', ['$scope', '$log', function($scope,$log,nameS
 
   $scope.person = {
     name: 'John Doe',
-    address: '555 Main St.'
+    address: '555 Main St.',
+    city: 'New York',
+    state: 'NY'
   }
 
+
+  $scope.formattedAddress = function(person) {
+    return person.address+', ' + person.city+', '+person.state;
+  }
+
+console.log($scope.formattedAddress($scope.person));
 
 
 
@@ -54,7 +62,8 @@ myApp.directive("searchResult", function() {
     templateUrl:  'directives/searchresult.html',
     replace: true,
     scope: {
-      personObject: "="
+      personObject: "=",
+      formattedAddressFunction: "&"
     }
   };
 });
