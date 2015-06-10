@@ -35,7 +35,7 @@ myApp.controller('mainController', ['$scope', '$log', function($scope,$log,nameS
   }
 
 
-  $scope.formattedAddress = function(person) {
+  $scope.formattedAddress =  function(person) {
     return person.address+', ' + person.city+', '+person.state;
   }
 
