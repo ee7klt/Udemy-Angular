@@ -27,19 +27,26 @@ myApp.config(function ($routeProvider) {
 
 myApp.controller('mainController', ['$scope', '$log', function($scope,$log,nameService) {
 
-  $scope.person = {
+  $scope.people = [
+
+  {
     name: 'John Doe',
     address: '555 Main St.',
     city: 'New York',
     state: 'NY'
-  }
-
+  },
+  {  name: 'John Doe',
+    address: '555 Main St.',
+    city: 'New York',
+    state: 'NY'
+    }
+  ]
 
   $scope.formattedAddress =  function(person) {
     return person.address+', ' + person.city+', '+person.state;
   }
 
-console.log($scope.formattedAddress($scope.person));
+//console.log($scope.formattedAddress($scope.person));
 
 
 
