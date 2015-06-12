@@ -35,10 +35,10 @@ myApp.controller('mainController', ['$scope', '$log', function($scope,$log,nameS
     city: 'New York',
     state: 'NY'
   },
-  {  name: 'John Doe',
-    address: '555 Main St.',
-    city: 'New York',
-    state: 'NY'
+  {  name: 'Jane Doe',
+    address: '333 South St.',
+    city: 'Miami',
+    state: 'FL'
     }
   ]
 
@@ -71,6 +71,23 @@ myApp.directive("searchResult", function() {
     scope: {
       personObject: "=",
       formattedAddressFunction: "&"
+    },
+    compile: function(elem, attrs) {
+      console.log('Compiling...');
+      //elem.removeAttr('class');
+      console.log(elem);
+
+      return {
+        pre: function(scope,elements,attrs) {
+          console.log('Pre-linking...');
+          console.log(elements);
+        },
+
+        post: function(scope, elements, attrs) {
+          console.log('Post-linking...');
+          console.log(elements);
+        }
+      }
     }
   };
 });
