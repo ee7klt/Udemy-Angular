@@ -78,13 +78,13 @@ myApp.directive("searchResult", function() {
       console.log(elem);
 
       return {
-        pre: function(scope,elements,attrs) {
-          console.log('Pre-linking...');
-          console.log(elements);
-        },
 
         post: function(scope, elements, attrs) {
           console.log('Post-linking...');
+          console.log(scope);
+          if (scope.personObject.name == 'John Doe') {
+            elements.removeAttr('class');
+          }
           console.log(elements);
         }
       }
