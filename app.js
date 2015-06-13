@@ -65,21 +65,14 @@ myApp.controller('secondController', ['$scope', '$log', '$routeParams',function(
 
 myApp.directive("searchResult", function() {
   return {
-
+    restrict: 'AECM',
     templateUrl:  'directives/searchresult.html',
     replace: true,
     scope: {
       personObject: "=",
       formattedAddressFunction: "&"
     },
-    link: function(scope, elements, attrs) {
-      console.log('Linking...');
-      console.log(scope);
-      if (scope.personObject.name == 'John Doe') {
-        elements.removeAttr('class');
-      }
-      console.log(elements);
-    }
+    transclude: true
 
   };
 });
