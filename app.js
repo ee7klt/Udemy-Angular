@@ -14,7 +14,9 @@ weatherApp.config (function ($routeProvider) {
     controller: 'homeController'
   })
 
-  .when('/forecast', {
+
+
+  .when('/forecast/:days', {
     templateUrl: 'pages/forecast.html',
     controller: 'forecastController'
   })
@@ -29,12 +31,17 @@ weatherApp.service('cityService', function() {
   this.customcity = '';
 });
 
+daysForecast.service('days', function() {
+  this.days = '';
+});
+
 
 // CONTROLLERS
-weatherApp.controller('homeController', ['$scope', '$log', 'cityService', function ($scope, $log,  cityService) {
+weatherApp.controller('homeController', ['$scope', '$log', '$routeParams', 'cityService', 'days' function ($scope, $log, $routeParams, cityService, days) {
 
   $log.log(cityService.customcity);
   $scope.city = cityService.customcity;
+  $scope.days = $routeParams.days;
 
 
   $scope.$watch('city', function(newValue,oldValue) {   //call listener function if value function 'city' changes
@@ -42,14 +49,17 @@ weatherApp.controller('homeController', ['$scope', '$log', 'cityService', functi
     //$log.log("new="+newValue);
     cityService.customcity = $scope.city;
 
+
   });
 
 }]);
 
 
-weatherApp.controller('forecastController', ['$scope', '$log', '$resource', 'cityService', function ($scope, $log, $resource,  cityService) {
+weatherApp.controller('forecastController', ['$scope', '$log', '$resource', '$routeParams', 'cityService', 'days', function ($scope, $log, $resource, $routeParams, cityService, days) {
   $log.log(cityService.customcity);
   $scope.city = cityService.customcity;
+  $scope.days = $routeParams.days;
+  $log.log($scope.days);
 
     $scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", {callback: "JSON_CALLBACK"}, {get: {method: "JSONP"}});
 

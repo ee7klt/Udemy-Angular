@@ -4,6 +4,12 @@
     <div class = "form-group">
       <input type ="text" class="form-control"  ng-model="city" />
     </div>
-    <a href="#/forecast" class="btn btn-primary">Get Forecast</a>
+    <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">2</button>
+  <button type="button" class="btn btn-default">5</button>
+  <button type="button" class="btn btn-default">7</button>
+</div> days
+<hr/>
+    <a href="#/forecast/{{days}}" class="btn btn-primary">Get Forecast</a>
   </div>
 </div>
