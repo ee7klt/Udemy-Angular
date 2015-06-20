@@ -24,21 +24,21 @@ weatherApp.config (function ($routeProvider) {
 
 // CUSTOM SERVICE
 weatherApp.service('cityService', function() {
-  this.city = '';
+  this.customcity = '';
 });
 
 
 // CONTROLLERS
 weatherApp.controller('homeController', ['$scope', '$log', 'cityService', function ($scope, $log, cityService) {
 
-  $log.log(cityService.city);
-  $scope.city = cityService.city;
+  $log.log(cityService.customcity);
+  $scope.city = cityService.customcity;
 
 
   $scope.$watch('city', function(newValue,oldValue) {   //call listener function if value function 'city' changes
     $log.log("old="+oldValue);
     $log.log("new="+newValue);
-    cityService.city = $scope.city;
+    cityService.customcity = $scope.city;
 
   });
 
@@ -46,8 +46,8 @@ weatherApp.controller('homeController', ['$scope', '$log', 'cityService', functi
 
 
 weatherApp.controller('forecastController', ['$scope', '$log', 'cityService', function ($scope, $log, cityService) {
-  $log.log(cityService.city);
-  $scope.city = cityService.city;
+  $log.log(cityService.customcity);
+  $scope.city = cityService.customcity;
 
 
 
