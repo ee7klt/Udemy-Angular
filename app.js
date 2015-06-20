@@ -20,6 +20,8 @@ weatherApp.config (function ($routeProvider) {
   })
 
 
+
+
 });
 
 // CUSTOM SERVICE
@@ -29,15 +31,15 @@ weatherApp.service('cityService', function() {
 
 
 // CONTROLLERS
-weatherApp.controller('homeController', ['$scope', '$log', 'cityService', function ($scope, $log, cityService) {
+weatherApp.controller('homeController', ['$scope', '$log', 'cityService', function ($scope, $log,  cityService) {
 
   $log.log(cityService.customcity);
   $scope.city = cityService.customcity;
 
 
   $scope.$watch('city', function(newValue,oldValue) {   //call listener function if value function 'city' changes
-    $log.log("old="+oldValue);
-    $log.log("new="+newValue);
+    //$log.log("old="+oldValue);
+    //$log.log("new="+newValue);
     cityService.customcity = $scope.city;
 
   });
@@ -45,9 +47,24 @@ weatherApp.controller('homeController', ['$scope', '$log', 'cityService', functi
 }]);
 
 
-weatherApp.controller('forecastController', ['$scope', '$log', 'cityService', function ($scope, $log, cityService) {
+weatherApp.controller('forecastController', ['$scope', '$log', '$resource', 'cityService', function ($scope, $log, $resource,  cityService) {
   $log.log(cityService.customcity);
   $scope.city = cityService.customcity;
+
+    $scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", {callback: "JSON_CALLBACK"}, {get: {method: "JSONP"}});
+
+    $scope.weatherResult = $scope.weatherAPI.get({q: $scope.city, cnt: 2});
+    $scope.convertToFahrenheit = function (degK) {
+      return Math.round((1.8 * (degK - 273)) + 32);
+    }
+    $scope.convertToDate = function(dt) {
+      return new Date(dt * 1000);
+    }
+
+
+
+
+
 
 
 
