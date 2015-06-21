@@ -72,6 +72,11 @@ weatherApp.controller('forecastController', ['$scope', '$log', '$resource', '$ro
       return new Date(dt * 1000);
     }
 
+  //  $scope.daysClicked = function () {
+    //  $scope.class = "bg-primary";
+    //}
+
+
 
 
 
