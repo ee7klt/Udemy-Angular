@@ -28,10 +28,23 @@ weatherApp.config (function ($routeProvider) {
 
 // CUSTOM SERVICE
 weatherApp.service('cityService', function() {
-  this.customcity = '';
+  this.customcity = 'Singapore';
 });
 
 
+// CUSTOM DIRECTIVE
+
+weatherApp.directive("daytimeTemp", function() {
+  return {
+    templateUrl: 'directives/daytimeTemp.html',
+    replace: true,
+    scope: {
+      forecastListItem: "=",
+      convertDateFunction: "&",
+      convertTempFunction: "&"
+    }
+  }
+});
 
 
 // CONTROLLERS
